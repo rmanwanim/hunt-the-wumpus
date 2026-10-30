@@ -1,0 +1,17 @@
+<div class="setup-container">
+  <h1>Hunt the Wumpus</h1>
+  <h2>Configuración de la partida</h2>
+
+  <form (ngSubmit)="onSubmit()">
+    <label for="size">Tamaño del tablero</label>
+    <input id="size" type="number" name="size" [(ngModel)]="config.size" min="2" required />
+
+    <label for="pits">Número de pozos</label>
+    <input id="pits" type="number" name="pits" [(ngModel)]="config.pits" min="0" required />
+
+    <label for="arrows">Número de flechas</label>
+    <input id="arrows" type="number" name="arrows" [(ngModel)]="config.arrows" min="1" required />
+
+    <button type="submit">Comenzar partida</button>
+  </form>
+</div>

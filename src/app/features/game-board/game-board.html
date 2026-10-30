@@ -1,0 +1,67 @@
+<div class="game-container">
+  <h1>Hunt the Wumpus</h1>
+
+  <div class="game-info">
+    <p>Flechas restantes: {{ gameState().arrowsRemaining }}</p>
+    <p>Dirección: {{ gameState().playerDirection }}</p>
+    <p>Estado: {{ gameState().status }}</p>
+  </div>
+
+  @if (gameState().status === 'WON') {
+    <div class="game-result won">
+      <h2>¡Enhorabuena, has ganado!</h2>
+      <p>Has conseguido escapar con el oro.</p>
+    </div>
+  } @else if (gameState().status === 'LOST') {
+    <div class="game-result lost">
+      <h2>¡Has perdido!</h2>
+      <p>La partida ha terminado.</p>
+    </div>
+  }
+
+  @if (gameState().status === 'WON' || gameState().status === 'LOST') {
+    <div class="controls">
+      <button type="button" (click)="newGame.emit()">Nueva partida</button>
+    </div>
+  }
+
+  <div class="controls">
+    <button (click)="turnLeft()" [disabled]="gameState().status !== 'PLAYING'">
+      ↶ Girar izquierda
+    </button>
+    <button (click)="advance()" [disabled]="gameState().status !== 'PLAYING'">↑ Avanzar</button>
+    <button (click)="turnRight()" [disabled]="gameState().status !== 'PLAYING'">
+      ↷ Girar derecha
+    </button>
+    <button (click)="shoot()" [disabled]="gameState().status !== 'PLAYING'">🏹 Disparar</button>
+    <button (click)="exit()" [disabled]="gameState().status !== 'PLAYING'">🚪 Salir</button>
+  </div>
+
+  <div class="board">
+    @for (row of gameState().board; track $index; let rowIndex = $index) {
+      <div class="board-row">
+        @for (cell of row; track $index; let colIndex = $index) {
+          <div class="cell">
+            @if (
+              gameState().playerPosition.row === rowIndex &&
+              gameState().playerPosition.col === colIndex
+            ) {
+              <span>🧑</span>
+            } @else if (cell.isExit) {
+              <span>🚪</span>
+            } @else {
+              <span>?</span>
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+  <div class="messages">
+    <h3>Registro de acontecimientos</h3>
+
+    @for (message of gameState().messages; track $index) {
+      <p>{{ message }}</p>
+    }
+  </div>
+</div>

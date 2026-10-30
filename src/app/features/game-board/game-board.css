@@ -1,0 +1,77 @@
+.game-container {
+  text-align: center;
+  padding: 24px;
+}
+
+.game-info {
+  margin-bottom: 20px;
+}
+
+.board {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.board-row {
+  display: flex;
+  gap: 4px;
+}
+
+.cell {
+  width: 65px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #999;
+  background-color: #e8e8e8;
+  font-size: 24px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.controls button {
+  padding: 10px 16px;
+  cursor: pointer;
+  border: 1px solid #999;
+  border-radius: 6px;
+}
+
+.messages {
+  margin: 25px auto;
+  max-width: 500px;
+  text-align: left;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.game-result {
+  max-width: 500px;
+  margin: 20px auto;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.won {
+  background-color: #d8f3dc;
+  color: #1b4332;
+}
+
+.lost {
+  background-color: #ffe0e0;
+  color: #9b2226;
+}
+
+.controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

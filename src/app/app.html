@@ -1,0 +1,13 @@
+@if (gameState === null) {
+  <app-game-setup (startGame)="onStartGame($event)"></app-game-setup>
+
+  @for (error of errors; track error) {
+    <p class="error">{{ error }}</p>
+  }
+} @else {
+  <app-game-board
+    [gameState]="gameState"
+    (gameStateChange)="gameState = $event"
+    (newGame)="onNewGame()"
+  ></app-game-board>
+}
